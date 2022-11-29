@@ -25,14 +25,14 @@ public class Main {
                     String modoIntroduccion = entradaModoAparca.nextLine();
                     if (modoIntroduccion.equals("manualmente")) {
                         vehiculoNuevo = Vehiculo.crearVehiculosManual();
-                        System.out.println(vehiculoNuevo.toString()); //Para los test: muestra los atributos del vehículo nuevo.
+                        System.out.println(vehiculoNuevo.toString()); //Para los test: muestra los atributos del vehículo nuevo haciendo uso del método generado "toString".
                         parking.aparcarVehiculo(vehiculoNuevo);//se llama al objeto parking, no a la clase, porque en este punto del programa ya es un objeto con unos atributos determinados (array plazas[] y n_plazas)
 
                     }
                     if (modoIntroduccion.equals("automaticamente") | modoIntroduccion.equals("automáticamente")) {
                         vehiculoNuevo = new Vehiculo();
                         parking.aparcarVehiculo(vehiculoNuevo); //se llama al objeto parking, no a la clase, porque en este punto del programa ya es un objeto con unos atributos determinados (array plazas[] y n_plazas)
-                        System.out.println(vehiculoNuevo.toString());//Para los test: muestra los atributos del vehículo nuevo.
+                        System.out.println(vehiculoNuevo.toString());//Para los test: muestra los atributos del vehículo nuevo haciendo uso del método generado "toString".
 
                     }
                     System.out.println(parking.toString());// Para los test: muestra el array del parking.
