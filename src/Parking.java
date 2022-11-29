@@ -36,7 +36,7 @@ public class Parking {
     }
 
     //Introduce los objetos vehículo en el array
-    void aparcarVehiculo(Vehiculo vehiculoNuevo) {
+   public void aparcarVehiculo(Vehiculo vehiculoNuevo) {
         for (int i = 0; i < plazas.length; i++) {
             if (plazas[i] == null) { //Si la posición del array correspondiente a la iteración está vacía...
                 if (vehiculoNuevo.getSize() == 1) {
@@ -44,8 +44,10 @@ public class Parking {
                 }
                 if (vehiculoNuevo.getSize() == 2 && plazas[i + 1] == null) { //... si el vehículo tiene size=2 (es un camión) Y el índice siguiente está vacío...
                     plazas[i] = vehiculoNuevo;
-                    plazas[i + 1] = vehiculoNuevo; //... aparcar el camión en ambas plazas (en i y en i+1)
-                    i = i + 2;
+                    plazas[i + 1] = vehiculoNuevo; //... aparcar el camión en ambas plazas (en i y en i+1). Luego...
+                    i = i + 1; // ... para la siguiente iteración, i será igual a i(posición actual)+1 (pues el camión ocupa la posición actual y la siguiente).
+                                // Al empezar la siguiente iteración se sumará 1 más (i++) por la propia condición del for, que es el siguiente hueco vacío. Es decir, si estuviésemos en la posición 2, tras hacer este proceso se adelantaría a la posición 3 (el camión estaría en 2 y 3).
+                                //Al empezar de nuevo el bucle, empieza en i++ (posición 4, que es la siguiente posición vacía).
                 }
             }
 
