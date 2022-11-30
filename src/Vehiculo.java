@@ -67,8 +67,8 @@ public class Vehiculo {
     //Generación manual de un objeto vehículo.
     public static Vehiculo crearVehiculosManual() {
         Scanner entrada = new Scanner(System.in);
-        int matricula;
-        String tipo;
+        int matricula=0;
+        String tipo="coche";
         int size=0;
         System.out.println("Introduzca la matrícula del vehículo: ");
         matricula = entrada.nextInt();

@@ -20,10 +20,9 @@ Necesitarás una forma de encontrar “huecos”.
 
 
 PROBLEMAS:
--Cómo saber qué huecos hay vacíos????
+-Cómo saber qué huecos hay vacíos para usarlos.
 -función desaparcar
--añadir un case para mostrar el array
-
+-cuando hay un camion en el array, si quiero meter otro indica que no hay plazas vacias
 
   
                         

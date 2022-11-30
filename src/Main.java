@@ -17,10 +17,12 @@ public class Main {
             int operacion;
             boolean isAparcar = true; /*este booleano nos permite añadir una condición más en el for: solo contará iteraciones en el bucle si es true,
              para que si retiramos un vehículo no se desplace un lugar en el índice.*/
-            System.out.println("¿Qué desea hacer? \n1. Aparcar vehículo \n2. Retirar vehículo. \n3. Salir.");
-            operacion = entrada.nextInt();
             for (int i = 0; i < parking.plazas.length && isAparcar; i++) {
+            System.out.println("¿Qué desea hacer? \n1. Aparcar vehículo \n2. Retirar vehículo. \n3. Mostrar vehículos aparcados. \n4. Salir.");
+            operacion = entrada.nextInt();
+
                 switch (operacion) {
+
                     case 1:
                         String modoIntroduccion;
                         Scanner entradaModoAparca = new Scanner(System.in);
@@ -33,24 +35,29 @@ public class Main {
                             parking.setPosicionParking(i); //indicamos que el nuevo valor de la posición del array es equivalente al valor de i (la iteración del bucle).
                         }
                         if (modoIntroduccion.equals("automaticamente") | modoIntroduccion.equals("automáticamente")) {
-                            vehiculoNuevo = new Vehiculo();
+                            vehiculoNuevo = new Vehiculo(); //se genera un nuevo objeto Vehiculo usando el constructor parametrizado que lo genera automáticamente.
                             parking.aparcarVehiculo(vehiculoNuevo, i); //se llama al objeto parking, no a la clase, porque en este punto del programa ya es un objeto con unos atributos determinados (array plazas[] y n_plazas)
                             System.out.println(vehiculoNuevo.toString());//Para los test: muestra los atributos del vehículo nuevo haciendo uso del método generado "toString".
                             parking.setPosicionParking(i);
                         }
                         System.out.println(parking.toString()); // Para los test: muestra el array del parking.
-
+                        break;
                     case 2:
                         isAparcar = false;
-                        int matriculaVehiculoDesaparcar;
+                        int matriculaVehiculoDesaparcar=0;
                         Scanner entradaDesaparcar = new Scanner(System.in);
                         System.out.print("Indique la matrícula correspondiente al vehículo que desea retirar: ");
                         matriculaVehiculoDesaparcar = entradaDesaparcar.nextInt();
                         parking.desaparcarVehiculo(matriculaVehiculoDesaparcar);
-
+                        break;
 
                     case 3:
+                        System.out.println(parking.toString()); ;
+                        break;
+
+                    case 4:
                         salir = true;
+                        break;
                 }
             }
         }
