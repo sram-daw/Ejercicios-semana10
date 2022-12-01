@@ -20,14 +20,11 @@ Necesitarás una forma de encontrar “huecos”.
 
 
 PROBLEMAS:
--Cómo saber qué huecos hay vacíos para usarlos.
--función desaparcar
--cuando hay un camion en el array, si quiero meter otro indica que no hay plazas vacias
+
+* en la funcion aparcarVehiculo, en la parte en la que se comprueban las demás plazas, no debería añadir el vehículo en todas las disponibles?????
+* al retirar un camion la frase "vehiculo retirado correctamente" aparece dos veces (las dos que encuentra en el array)
+* generador matrícula con letra
 
   
                         
 
-
-                        atributo posicion actual parking
-                        o en al main una variable global
-                        
