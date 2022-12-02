@@ -45,20 +45,21 @@ public class Parking {
         return "Plazas totales: " + n_plazas + "\n" +
                 "Plazas vacías: " + comprobarPlazasLibres() + "\n" +
                 "Vehículos aparcados: " + "\n" +
-                Arrays.toString(plazas);
+                Arrays.toString(plazas)+
+        "TEST posicionParking: " +  posicionParking;
     }
 
     //Introduce los objetos vehículo en el array
     public void aparcarVehiculo(Vehiculo vehiculoNuevo, int posicionParking) { /*pasamos por parámetros el nuevo objeto vehículo creado y la posición
          del array del bucle del main para así saber en qué posición debe la función colocar el objeto.*/
 
-        //Esta primera parte comprueba si la siguiente plaza en el array está libre.
+        //Esta primera parte comprueba si la plaza actual en el array está libre.
         if (this.plazas[posicionParking] == null) { //Si la posición del array correspondiente a la iteración está vacía...
             if (vehiculoNuevo.getSize() == 1) {
                 this.plazas[posicionParking] = vehiculoNuevo; //... aparcar el vehículo si tiene size=1 (si es un coche). Y...
                 System.out.println("Vehículo aparcado correctamente.");
             }
-            if (vehiculoNuevo.getSize() == 2 && this.plazas[posicionParking + 1] == null) { //... si el vehículo tiene size=2 (es un camión) Y el índice siguiente está vacío...
+            if (vehiculoNuevo.getSize() == 2 /*&& this.plazas[posicionParking + 1] == null*/) { //... si el vehículo tiene size=2 (es un camión) Y el índice siguiente está vacío Y el índice siguiente es menor que el lenght del array...
                 this.plazas[posicionParking] = vehiculoNuevo;
                 this.plazas[posicionParking + 1] = vehiculoNuevo;//... aparcar el camión en ambas plazas (en i y en i+1).
                 System.out.println("Vehículo aparcado correctamente.");
@@ -74,14 +75,12 @@ public class Parking {
                     }
                 }
             }
-            if (vehiculoNuevo.getSize() == 2 && comprobarDosPlazasConsecutivasLibres()) { //Este if es para los camiones. Si existen dos plazas consecutivas vacías se pasa a aparcarlo en ambas.
+            if (vehiculoNuevo.getSize() == 2) { //Este if es para los camiones.
                 for (int i = 0; i < plazas.length; i++) {
                     this.plazas[i] = vehiculoNuevo;
                     this.plazas[i + 1] = vehiculoNuevo;
                     System.out.println("Vehículo aparcado correctamente.");
                 }
-            } else {
-                System.out.println("No existen dos plazas libres consecutivas para aparcar el camión.");
             }
         }
 
@@ -92,7 +91,6 @@ public class Parking {
         for (int i = 0; i < this.plazas.length && this.plazas[i] != null; i++) { //Es necesario indicar como condición extra que la plaza no sea null porque si no lanza un error.
             if (this.plazas[i].getMatricula() == matriculaVehiculo) {
                 this.plazas[i] = null;
-                System.out.println("Vehículo retirado correctamente.");
             }
         }
     }
@@ -112,7 +110,7 @@ public class Parking {
     public boolean comprobarDosPlazasConsecutivasLibres() {
         boolean dosLibresConsecutivas = false;
         for (int i = 0; i < this.plazas.length; i++) {
-            if (this.plazas[i] == null && this.plazas[i + 1] == null) {
+            if (this.plazas[i] == null && i+1<plazas.length  && this.plazas[i + 1] == null  ) { //es necesario añadir la condición del centro para que no siga comprobando en caso de que i+1 no entre dentro de los límites de array; de lo contrario salta un error.
                 dosLibresConsecutivas = true;
             }
         }
