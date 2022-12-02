@@ -45,8 +45,8 @@ public class Parking {
         return "Plazas totales: " + n_plazas + "\n" +
                 "Plazas vacías: " + comprobarPlazasLibres() + "\n" +
                 "Vehículos aparcados: " + "\n" +
-                Arrays.toString(plazas)+
-        "TEST posicionParking: " +  posicionParking;
+                Arrays.toString(plazas) +
+                "TEST posicionParking: " + posicionParking;
     }
 
     //Introduce los objetos vehículo en el array
@@ -87,9 +87,9 @@ public class Parking {
     }
 
 
-    public void desaparcarVehiculo(int matriculaVehiculo) {
+    public void desaparcarVehiculo(String matriculaVehiculo) {
         for (int i = 0; i < this.plazas.length && this.plazas[i] != null; i++) { //Es necesario indicar como condición extra que la plaza no sea null porque si no lanza un error.
-            if (this.plazas[i].getMatricula() == matriculaVehiculo) {
+            if (this.plazas[i].getMatricula().equals(matriculaVehiculo)) {
                 this.plazas[i] = null;
             }
         }
@@ -110,10 +110,26 @@ public class Parking {
     public boolean comprobarDosPlazasConsecutivasLibres() {
         boolean dosLibresConsecutivas = false;
         for (int i = 0; i < this.plazas.length; i++) {
-            if (this.plazas[i] == null && i+1<plazas.length  && this.plazas[i + 1] == null  ) { //es necesario añadir la condición del centro para que no siga comprobando en caso de que i+1 no entre dentro de los límites de array; de lo contrario salta un error.
+            if (this.plazas[i] == null && i + 1 < plazas.length && this.plazas[i + 1] == null) { //es necesario añadir la condición del centro para que no siga comprobando en caso de que i+1 no entre dentro de los límites de array; de lo contrario salta un error.
                 dosLibresConsecutivas = true;
             }
         }
         return dosLibresConsecutivas;
+    }
+
+    public void obtenerVehiculoPorMatricula(String matricula) {
+        for (int i = 0; i < this.plazas.length; i++) {
+            if (this.plazas[i] != null && this.plazas[i].getMatricula().equals(matricula)) {
+                System.out.println("El vehículo con la matrícula introducida se encuentra en la plaza número " + i);
+            }
+        }
+    }
+
+    public void obtenerVehiculoPorPlaza(int plaza) {
+        for (int i = 0; i < this.plazas.length; i++) {
+            if (i == plaza) {
+                System.out.println("El vehículo aparcado en la plaza " + plaza + " es: \n" + this.plazas[plaza].toString());
+            }
+        }
     }
 }

@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
 public class Vehiculo {
-    private int matricula;
+    private String matricula;
     private String tipo;
 
     private int size;
 
-    public Vehiculo(int matricula, String tipo, int size) {
+    public Vehiculo(String matricula, String tipo, int size) {
         this.matricula = matricula;
         this.tipo = tipo;
         this.size = size;
@@ -16,20 +16,20 @@ public class Vehiculo {
     public Vehiculo() {
         this.matricula = generarMatricula();
         this.size = (int) (Math.random() * (2 - 1 + 1) + 1);
-       if(this.size==1){
-           this.tipo = "coche";
-       }
-        if(this.size==2){
+        if (this.size == 1) {
+            this.tipo = "coche";
+        }
+        if (this.size == 2) {
             this.tipo = "camion";
         }
 
     }
 
-    public int getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 
@@ -57,29 +57,52 @@ public class Vehiculo {
                 ", size=" + size +
                 '}';
     }
-//Generación aleatoria matrícula
-    public static int generarMatricula() {
-        int matricula;
-        matricula = (int) (Math.random() * (9999));
-        return matricula;
+
+    //Generación aleatoria matrícula
+    public static String generarMatricula() {
+        char[] matricula = new char[7];
+        matricula[0] = generarCharAleatorioNumero();
+        matricula[1] = generarCharAleatorioNumero();
+        matricula[2] = generarCharAleatorioNumero();
+        matricula[3] = generarCharAleatorioNumero();
+        matricula[4] = generarCharAleatorioLetra();
+        matricula[5] = generarCharAleatorioLetra();
+        matricula[6] = generarCharAleatorioLetra();
+        String matriculaAString = String.valueOf(matricula); //El array de chars se transforma en String para que sea compatible con el tipo del atributo matricula.
+        return matriculaAString;
     }
+
+    public static char generarCharAleatorioLetra() {
+        String numString = "BCDFGHJKLMNPQRSTVWXYZ";
+        char caracteres[] = numString.toCharArray();
+        int index = (int) (Math.random() * caracteres.length);
+        return caracteres[index];
+    }
+
+    public static char generarCharAleatorioNumero() {
+        String numString = "0123456789";
+        char caracteres[] = numString.toCharArray();
+        int index = (int) (Math.random() * caracteres.length);
+        return caracteres[index];
+    }
+
 
     //Generación manual de un objeto vehículo.
     public static Vehiculo crearVehiculosManual() {
         Scanner entrada = new Scanner(System.in);
-        int matricula=0;
-        String tipo="coche";
-        int size=0;
+        String matricula = "";
+        String tipo = "coche";
+        int size = 0;
         System.out.println("Introduzca la matrícula del vehículo: ");
-        matricula = entrada.nextInt();
+        matricula = entrada.nextLine();
         Scanner entradaTipo = new Scanner(System.in);
         System.out.println("Introduzca el tipo de vehículo (coche o camión): ");
         tipo = entradaTipo.nextLine();
-        if (tipo.equals("coche")){
-            size=1;
+        if (tipo.equals("coche")) {
+            size = 1;
         }
-        if (tipo.equals("camion")||tipo.equals("camión")){
-            size=2;
+        if (tipo.equals("camion") || tipo.equals("camión")) {
+            size = 2;
         }
 
         Vehiculo nuevoVehiculo = new Vehiculo(matricula, tipo, size);

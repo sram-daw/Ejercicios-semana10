@@ -18,7 +18,7 @@ public class Main {
             boolean isAparcar = true; /*este booleano nos permite añadir una condición más en el for: solo contará iteraciones en el bucle si es true,
              para que si retiramos un vehículo (o no se puede aparcar por falta de espacio) no se desplace un lugar en el array.*/
             for (int i = 0; i < parking.plazas.length && isAparcar && !salir; i++) {
-                System.out.println("¿Qué desea hacer? \n1. Aparcar vehículo \n2. Retirar vehículo. \n3. Mostrar vehículos aparcados y plazas disponibles.  \n4. Salir.");
+                System.out.println("¿Qué desea hacer? \n1. Aparcar vehículo \n2. Retirar vehículo. \n3. Mostrar vehículos aparcados y plazas disponibles. \n4. Localizar un vehículo.  \n5. Salir.");
                 operacion = entrada.nextInt();
                 switch (operacion) {
 
@@ -73,10 +73,10 @@ public class Main {
                         break;
                     case 2:
                         isAparcar = false;
-                        int matriculaVehiculoDesaparcar = 0;
+                        String matriculaVehiculoDesaparcar = "";
                         Scanner entradaDesaparcar = new Scanner(System.in);
                         System.out.print("Indique la matrícula correspondiente al vehículo que desea retirar: ");
-                        matriculaVehiculoDesaparcar = entradaDesaparcar.nextInt();
+                        matriculaVehiculoDesaparcar = entradaDesaparcar.nextLine();
                         parking.desaparcarVehiculo(matriculaVehiculoDesaparcar);
                         System.out.println("Vehículo retirado correctamente.");
                         break;
@@ -86,6 +86,26 @@ public class Main {
                         break;
 
                     case 4:
+                        isAparcar = false;
+                        int metodoLocalizarVehiculo = 0;
+                        Scanner entradaLocalizar = new Scanner(System.in);
+                        System.out.println("Desea localizar el vehículo: \n1. Por plaza \n2. Por matrícula");
+                        metodoLocalizarVehiculo = entradaLocalizar.nextInt();
+                        if (metodoLocalizarVehiculo == 1) {
+                            int plazaIntroducida = 0;
+                            System.out.print("Introduzca el número de plaza (posición): ");
+                            plazaIntroducida = entradaLocalizar.nextInt();
+                            parking.obtenerVehiculoPorPlaza(plazaIntroducida);
+                        }
+                        if (metodoLocalizarVehiculo == 2) {
+                            String matriculaIntroducida = "";
+                            Scanner entradaMatriculaLocalizar = new Scanner(System.in);
+                            System.out.print("Introduzca la matrícula del vehículo a localizar: ");
+                            matriculaIntroducida = entradaMatriculaLocalizar.nextLine();
+                            parking.obtenerVehiculoPorMatricula(matriculaIntroducida);
+                        }
+                        break;
+                    case 5:
                         salir = true;
                         break;
                 }
