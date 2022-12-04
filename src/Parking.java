@@ -59,7 +59,7 @@ public class Parking {
                 this.plazas[posicionParking] = vehiculoNuevo; //... aparcar el vehículo si tiene size=1 (si es un coche). Y...
                 System.out.println("Vehículo aparcado correctamente.");
             }
-            if (vehiculoNuevo.getSize() == 2 /*&& this.plazas[posicionParking + 1] == null*/) { //... si el vehículo tiene size=2 (es un camión) Y el índice siguiente está vacío Y el índice siguiente es menor que el lenght del array...
+            if (vehiculoNuevo.getSize() == 2 ) { //... si el vehículo tiene size=2 (es un camión)...
                 this.plazas[posicionParking] = vehiculoNuevo;
                 this.plazas[posicionParking + 1] = vehiculoNuevo;//... aparcar el camión en ambas plazas (en i y en i+1).
                 System.out.println("Vehículo aparcado correctamente.");
@@ -68,15 +68,19 @@ public class Parking {
             //A partir de aquí, si la siguiente plaza no está libre comprueba todas las demás.
         } else {
             if (vehiculoNuevo.getSize() == 1) { //Este if es para los coches
-                for (int i = 0; i < plazas.length; i++) {
+                boolean pararCuandoNull= false; //Este booleano es necesario para evitar que, tras retirar un vehículo y deje de seguirse el orden del índice, se aparque en todas las posiciones null.
+                for (int i = 0; i < plazas.length && !pararCuandoNull; i++) {
                     if (this.plazas[i] == null) {
-                        this.plazas[i] = vehiculoNuevo;  //¿¿¿¿¿¿Debería añadir el vehículo en todas las disponibles?????
+                        pararCuandoNull=true;
+                        this.plazas[i] = vehiculoNuevo;
                         System.out.println("Vehículo aparcado correctamente.");
                     }
                 }
             }
             if (vehiculoNuevo.getSize() == 2) { //Este if es para los camiones.
-                for (int i = 0; i < plazas.length; i++) {
+                boolean pararCuandoNull= false;
+                for (int i = 0; i < plazas.length && !pararCuandoNull; i++) {
+                    pararCuandoNull=true;
                     this.plazas[i] = vehiculoNuevo;
                     this.plazas[i + 1] = vehiculoNuevo;
                     System.out.println("Vehículo aparcado correctamente.");

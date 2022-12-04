@@ -86,7 +86,6 @@ public class Vehiculo {
         return caracteres[index];
     }
 
-
     //Generación manual de un objeto vehículo.
     public static Vehiculo crearVehiculosManual() {
         Scanner entrada = new Scanner(System.in);
