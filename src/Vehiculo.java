@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.regex.*;
 
 public class Vehiculo {
     private String matricula;
@@ -88,12 +89,21 @@ public class Vehiculo {
 
     //Generación manual de un objeto vehículo.
     public static Vehiculo crearVehiculosManual() {
-        Scanner entrada = new Scanner(System.in);
-        String matricula = "";
+        Scanner entradaMatricula = new Scanner(System.in);
         String tipo = "coche";
+        boolean matriculaCorrecta = false;
         int size = 0;
+        String matricula = "";
         System.out.println("Introduzca la matrícula del vehículo: ");
-        matricula = entrada.nextLine();
+        while (!matriculaCorrecta) {
+            matricula = entradaMatricula.nextLine().toUpperCase();
+            if (!matricula.matches("^\\d{4}[B-Z^EIOU]{3}")) { //Se declara el patrón que debe tener la matrícula (empezar por 4 dígitos del 0-9 seguidos 3 letras excepto vocales.)
+                System.out.println("Introduzca una matrícula válida (1234XXX): ");
+            }
+            if (matricula.matches("^\\d{4}[B-Z^EIOU]{3}")) {
+                matriculaCorrecta = true;
+            }
+        }
         Scanner entradaTipo = new Scanner(System.in);
         System.out.println("Introduzca el tipo de vehículo (coche o camión): ");
         tipo = entradaTipo.nextLine();

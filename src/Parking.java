@@ -54,10 +54,12 @@ public class Parking {
         if (vehiculoNuevo.getSize() == 2) { //Este if es para los camiones.
             boolean pararCuandoNull = false;
             for (int i = 0; i < plazas.length && !pararCuandoNull; i++) {
-                pararCuandoNull = true;
-                this.plazas[i] = vehiculoNuevo;
-                this.plazas[i + 1] = vehiculoNuevo;
-                System.out.println("Vehículo aparcado correctamente.");
+                if (this.plazas[i] == null) {
+                    pararCuandoNull = true;
+                    this.plazas[i] = vehiculoNuevo;
+                    this.plazas[i + 1] = vehiculoNuevo;
+                    System.out.println("Vehículo aparcado correctamente.");
+                }
             }
         }
     }
@@ -98,17 +100,26 @@ public class Parking {
             if (this.plazas[i] != null && this.plazas[i].getMatricula().equals(matricula)) {
                 System.out.println("El vehículo con la matrícula introducida se encuentra en la plaza número " + i);
             }
+            try {
+                if (i == this.plazas.length - 1 && !this.plazas[i].getMatricula().equals(matricula)) { /*Esta línea de código es testada antes de ser ejecutada gracias al try.
+                     Cuando el bucle llega a la última posición del array sin haber encontrado la matrícula introducida, quiere decir que no hay ningún vehículo con dicha matrícula.*/
+                }
+            } catch (NullPointerException e) { //Evita que salga el error null pointer exception (se usa junto con try). En su lugar lanza el siguiente mensaje:
+                System.out.println("La matrícula introducida no coincide con ningún vehículo aparcado.");
+            }
         }
     }
+
 
     //Nos devuelve los datos del vehículo dada la plaza.
     public void obtenerVehiculoPorPlaza(int plaza) {
         for (int i = 0; i < this.plazas.length; i++) {
             if (i == plaza) {
-                System.out.println("El vehículo aparcado en la plaza " + plaza + " es: \n" + this.plazas[plaza].toString());
-               /* if (this.plazas[plaza].getMatricula() == null) {
+                try {
+                    System.out.println("El vehículo aparcado en la plaza " + plaza + " es: \n" + this.plazas[plaza].toString());
+                } catch (NullPointerException e) {
                     System.out.println("No hay ningún vehículo aparcado en esta plaza.");
-                }*/
+                }
             }
         }
     }

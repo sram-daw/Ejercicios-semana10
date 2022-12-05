@@ -11,7 +11,7 @@ public class Main {
         /*Por cada ejecución del programa instanciamos un nuevo objeto parking.
         Ese constructor se encarga de crear el objeto parking con los atributos que hemos especificado: la capacidad indicada por el usuario y
         la posición actual del array, que en este momento es 0 ya que aun no hemos empezado el bucle for del menú que va a ir aumentando este valor.*/
-        Parking parking = new Parking(capacidadParking/*, 0*/);
+        Parking parking = new Parking(capacidadParking);
         while (!salir) { //Para la ejecución del programa cuando el usuario elige salir.
             //Bucle menú
             int operacion = 0;

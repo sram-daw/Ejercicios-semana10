@@ -2,9 +2,7 @@
 
 PROBLEMAS:
 
-* en la funcion aparcarVehiculo, en la parte en la que se comprueban las demás plazas, no debería añadir el vehículo en todas las disponibles?????
-* generador matrícula con letra
-
+* en la función localizar por plaza y por matricula, cuando está vacía lanza un error 
 
   
                         
