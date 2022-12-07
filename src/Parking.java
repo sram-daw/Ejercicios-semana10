@@ -83,7 +83,7 @@ public class Parking {
                 System.out.println("El vehículo con la matrícula introducida se encuentra en la plaza número " + i);
             }
             try {
-                if (i == this.plazas.length - 1 && !this.plazas[i].getMatricula().equals(matricula)) { /*Esta línea de código es testada antes de ser ejecutada gracias al try.
+                if (i == this.plazas.length - 1 && !this.plazas[i].getMatricula().equals(matricula)) { /*Esta línea de código es testada gracias al try (funciona como ifs de forma continua).
                      Cuando el bucle llega a la última posición del array sin haber encontrado la matrícula introducida, quiere decir que no hay ningún vehículo con dicha matrícula.*/
                 }
             } catch (NullPointerException e) { //Evita que salga el error null pointer exception (se usa junto con try). En su lugar lanza el siguiente mensaje:

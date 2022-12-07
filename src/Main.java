@@ -67,7 +67,6 @@ public class Main {
                     parking.desaparcarVehiculo(matriculaVehiculoDesaparcar);
                     System.out.println("Vehículo retirado correctamente.");
                     break;
-
                 case 3:
                     System.out.println(parking.toString()); //Función para visualizar el contenido del parking.
                     break;
