@@ -52,11 +52,10 @@ public class Vehiculo {
 
     @Override
     public String toString() {
-        return "Vehiculo{" +
+        return "Vehículo: " +
                 "matricula=" + matricula +
                 ", tipo='" + tipo + '\'' +
-                ", size=" + size +
-                '}';
+                ", size=" + size;
     }
 
     //Generación aleatoria matrícula
@@ -92,6 +91,7 @@ public class Vehiculo {
         Scanner entradaMatricula = new Scanner(System.in);
         String tipo = "coche";
         boolean matriculaCorrecta = false;
+        boolean tipoCorrecto = false;
         int size = 0;
         String matricula = "";
         System.out.println("Introduzca la matrícula del vehículo: ");
@@ -106,12 +106,18 @@ public class Vehiculo {
         }
         Scanner entradaTipo = new Scanner(System.in);
         System.out.println("Introduzca el tipo de vehículo (coche o camión): ");
-        tipo = entradaTipo.nextLine();
-        if (tipo.equals("coche")) {
-            size = 1;
-        }
-        if (tipo.equals("camion") || tipo.equals("camión")) {
-            size = 2;
+        while (!tipoCorrecto) {
+            tipo = entradaTipo.nextLine().toLowerCase();
+            if (tipo.equals("coche")) {
+                size = 1;
+                tipoCorrecto = true;
+            }
+            if (tipo.equals("camion") || tipo.equals("camión")) {
+                size = 2;
+                tipoCorrecto = true;
+            } else {
+                System.out.println("Introduzca un tipo de vehículo válido (coche o camión): ");
+            }
         }
 
         Vehiculo nuevoVehiculo = new Vehiculo(matricula, tipo, size);
