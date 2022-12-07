@@ -13,24 +13,6 @@ public class Parking {
         this.n_plazas = n_plazas;
         this.plazas = new Vehiculo[this.n_plazas];
     }
-
-
-    public int getN_plazas() {
-        return n_plazas;
-    }
-
-    public void setN_plazas(int n_plazas) {
-        this.n_plazas = n_plazas;
-    }
-
-    public Vehiculo[] getPlazas() {
-        return plazas;
-    }
-
-    public void setPlazas(Vehiculo[] plazas) {
-        this.plazas = plazas;
-    }
-
     @Override
     public String toString() {
         return "Plazas totales: " + n_plazas + "\n" +

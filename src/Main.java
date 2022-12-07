@@ -18,15 +18,14 @@ public class Main {
             System.out.println("¿Qué desea hacer? \n1. Aparcar vehículo \n2. Retirar vehículo. \n3. Mostrar vehículos aparcados y plazas disponibles. \n4. Localizar un vehículo.  \n5. Salir.");
             operacion = entrada.nextInt();
             switch (operacion) {
-
                 case 1:
                     if (parking.comprobarPlazasLibres() >= 1) {
                         int modoIntroduccion;
                         Scanner entradaModoAparca = new Scanner(System.in);
-                        System.out.println("¿Cómo desea aparcar el vehículo? \n1. Automáticamente  \n2. Manualmente ");
+                        System.out.println("¿Cómo desea aparcar el vehículo? \n1. Manualmente  \n2. Automáticamente ");
                         modoIntroduccion = entradaModoAparca.nextInt();
                         //Aparcamiento manual
-                        if (modoIntroduccion == 2) {
+                        if (modoIntroduccion == 1) {
                             vehiculoNuevo = Vehiculo.crearVehiculosManual();
                             System.out.println("Datos introducidos: \n" + vehiculoNuevo.toString()); //Para los test: muestra los atributos del vehículo nuevo haciendo uso del método generado "toString".
                             if (vehiculoNuevo.getSize() == 1) { //Si es un coche, llamamos al método aparcar.
@@ -40,7 +39,7 @@ public class Main {
                             }
                         }
                         //Aparcamiento automatico
-                        if (modoIntroduccion == 1) {
+                        if (modoIntroduccion == 2) {
                             vehiculoNuevo = new Vehiculo(); //se genera un nuevo objeto Vehiculo usando el constructor parametrizado que lo genera automáticamente.
                             System.out.println("Datos introducidos: \n" + vehiculoNuevo.toString());//Para los test: muestra los atributos del vehículo nuevo haciendo uso del método generado "toString".
                             if (vehiculoNuevo.getSize() == 1) {

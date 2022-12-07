@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.regex.*;
 
 public class Vehiculo {
     private String matricula;
@@ -16,38 +15,21 @@ public class Vehiculo {
     //Generación automática de un objeto vehículo
     public Vehiculo() {
         this.matricula = generarMatricula();
-        this.size = (int) (Math.random() * (2 - 1 + 1) + 1);
+        this.size = (int) (Math.random() * (2 - 1 + 1) + 1); //Genera un número aleatorio entre 1 y 2.
         if (this.size == 1) {
             this.tipo = "coche";
         }
         if (this.size == 2) {
             this.tipo = "camion";
         }
-
     }
 
     public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public int getSize() {
         return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
     }
 
     @Override
@@ -61,27 +43,27 @@ public class Vehiculo {
     //Generación aleatoria matrícula
     public static String generarMatricula() {
         char[] matricula = new char[7];
-        matricula[0] = generarCharAleatorioNumero();
-        matricula[1] = generarCharAleatorioNumero();
-        matricula[2] = generarCharAleatorioNumero();
-        matricula[3] = generarCharAleatorioNumero();
-        matricula[4] = generarCharAleatorioLetra();
-        matricula[5] = generarCharAleatorioLetra();
-        matricula[6] = generarCharAleatorioLetra();
+        matricula[0] = generarNumeroAleatorio();
+        matricula[1] = generarNumeroAleatorio();
+        matricula[2] = generarNumeroAleatorio();
+        matricula[3] = generarNumeroAleatorio();
+        matricula[4] = generarLetraAleatoria();
+        matricula[5] = generarLetraAleatoria();
+        matricula[6] = generarLetraAleatoria();
         String matriculaAString = String.valueOf(matricula); //El array de chars se transforma en String para que sea compatible con el tipo del atributo matricula.
         return matriculaAString;
     }
 
-    public static char generarCharAleatorioLetra() {
+    public static char generarLetraAleatoria() {
         String numString = "BCDFGHJKLMNPQRSTVWXYZ";
-        char caracteres[] = numString.toCharArray();
-        int index = (int) (Math.random() * caracteres.length);
-        return caracteres[index];
+        char caracteres[] = numString.toCharArray(); //Se crea un array de caracteres con las letras indicadas en la anterior línea.
+        int index = (int) (Math.random() * caracteres.length); //Esta función random escoge un número aleatorio del 0 al índice máximo del array.
+        return caracteres[index]; //Devuelve el valor que hay en el índice que corresponde al número anterior.
     }
 
-    public static char generarCharAleatorioNumero() {
+    public static char generarNumeroAleatorio() {
         String numString = "0123456789";
-        char caracteres[] = numString.toCharArray();
+        char caracteres[] = numString.toCharArray(); //Lo mismo que en la funcion generarCharAleatorioLetra
         int index = (int) (Math.random() * caracteres.length);
         return caracteres[index];
     }
